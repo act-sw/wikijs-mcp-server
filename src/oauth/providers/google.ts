@@ -7,7 +7,7 @@
  * Google Cloud Console setup required:
  *   - OAuth 2.0 Client ID of type "Web application"
  *   - Authorized redirect URI: value of GOOGLE_REDIRECT_URI env var
- *     (e.g. https://mcp.knb.bulksource.com/oauth/callback/google)
+ *     (e.g. https://mcp.example.com/oauth/callback/google)
  */
 import { type IdentityProvider } from "./base.js";
 
@@ -47,7 +47,7 @@ export class GoogleProvider implements IdentityProvider {
       // Pass our session ID as `state` — Google echoes it back in the callback.
       state: sessionId,
       // "select_account" forces the account picker so multi-account users can
-      // choose the right one (usually their company @bulksource.com account).
+      // choose the right one (usually their company @your-company.com account).
       prompt: "select_account",
       access_type: "online",
     });
