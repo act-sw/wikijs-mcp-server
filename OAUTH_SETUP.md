@@ -29,7 +29,7 @@ tools — no token management, no `.mcp.json` edits.
 4. Name: `Wiki.js MCP Server` (or anything recognizable)
 5. Under **Authorized redirect URIs**, add exactly:
    ```
-   https://mcp.knb.bulksource.com/oauth/callback/google
+   https://mcp.example.com/oauth/callback/google
    ```
 6. Click **Create**
 7. Copy the **Client ID** and **Client Secret** — you'll need them in Step 2
@@ -64,7 +64,7 @@ Keep all existing variables unchanged.
 # ── OAuth 2.1 ────────────────────────────────────────────────────────────────
 
 # Public base URL of this server (no trailing slash)
-OAUTH_ISSUER=https://mcp.knb.bulksource.com
+OAUTH_ISSUER=https://mcp.example.com
 
 # Credentials you will enter in the Claude Desktop Connector UI (Step 5).
 # OAUTH_CLIENT_ID can be any stable string — the value below is fine as-is.
@@ -89,7 +89,7 @@ WIKIJS_TEMPLATE_GROUP=editors
 
 GOOGLE_CLIENT_ID=<Client ID from Step 1>
 GOOGLE_CLIENT_SECRET=<Client Secret from Step 1>
-GOOGLE_REDIRECT_URI=https://mcp.knb.bulksource.com/oauth/callback/google
+GOOGLE_REDIRECT_URI=https://mcp.example.com/oauth/callback/google
 ```
 
 ---
@@ -133,10 +133,10 @@ Verify the new endpoints are live:
 
 ```bash
 # Should return JSON with authorization_servers
-curl https://mcp.knb.bulksource.com/.well-known/oauth-protected-resource
+curl https://mcp.example.com/.well-known/oauth-protected-resource
 
 # Should return authorization_endpoint, token_endpoint, etc.
-curl https://mcp.knb.bulksource.com/.well-known/oauth-authorization-server
+curl https://mcp.example.com/.well-known/oauth-authorization-server
 ```
 
 ---
@@ -149,7 +149,7 @@ team members automatically.
 1. Open **Claude Desktop → Organisation Settings → Connectors** (you need org-admin rights)
 2. Click **"Add Connector"**
 3. Fill in:
-   - **Connector URL:** `https://mcp.knb.bulksource.com/mcp`
+   - **Connector URL:** `https://mcp.example.com/mcp`
    - **OAuth Client ID:** the value of `OAUTH_CLIENT_ID` from your `.env`
      (e.g. `wikijs-mcp-client`)
    - **OAuth Client Secret:** the value of `OAUTH_CLIENT_SECRET` from your `.env`
@@ -167,9 +167,9 @@ team members automatically.
 Each user does this once:
 
 1. Open **Claude Desktop → Settings → Connectors**
-2. Find the **BulkSource Knowledge Base** connector added by the admin
+2. Find the connector added by your admin
 3. Click **"Connect"**
-4. A browser window opens → sign in with your Google (act.software) account
+4. A browser window opens → sign in with your company Google account
 5. Done — Claude Desktop now has access to all Wiki.js tools
 
 Edits made through Claude Desktop are attributed to the correct user in Wiki.js
@@ -197,7 +197,7 @@ provisioning script manually:
 
 The user clicked "Cancel" on the Google consent screen, or their Google account
 is not in the allowed domain.  Ask the user to try again and approve the consent
-screen using their `act.software` Google account.
+screen using their company Google account.
 
 ### Tools appear to return errors even though the server is healthy
 

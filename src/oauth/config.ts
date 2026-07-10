@@ -13,7 +13,7 @@
  */
 export const oauthConfig = {
   // Public base URL of this MCP server (no trailing slash)
-  issuer: process.env.OAUTH_ISSUER || "https://mcp.knb.bulksource.com",
+  issuer: process.env.OAUTH_ISSUER || "https://mcp.example.com",
 
   // Credentials the Claude Desktop admin configures in the Connector UI
   clientId: process.env.OAUTH_CLIENT_ID || "",
@@ -37,7 +37,7 @@ export const oauthConfig = {
     // Points to THIS server's callback endpoint, not Claude's.
     redirectUri:
       process.env.GOOGLE_REDIRECT_URI ||
-      "https://mcp.knb.bulksource.com/oauth/callback/google",
+      "https://mcp.example.com/oauth/callback/google",
   },
 
   // ---- Microsoft Entra ID identity provider ----
@@ -51,7 +51,7 @@ export const oauthConfig = {
     // Points to THIS server's callback endpoint, not Claude's.
     redirectUri:
       process.env.ENTRA_REDIRECT_URI ||
-      "https://mcp.knb.bulksource.com/oauth/callback/microsoft",
+      "https://mcp.example.com/oauth/callback/microsoft",
   },
 
   // Name of the Wiki.js permission group whose rules are copied for new users

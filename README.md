@@ -12,6 +12,24 @@ This project provides an MCP server for interacting with Wiki.js through GraphQL
 
 The server provides a unified interface for working with Wiki.js that can be used by various AI agents and tools supporting MCP.
 
+## 🙏 Origin & Attribution
+
+This project started as a fork of [heAdz0r/wikijs-mcp-server](https://github.com/heAdz0r/wikijs-mcp-server)
+and has been substantially extended since:
+
+- **MCP HTTP transport** — JSON-RPC 2.0 endpoint + SSE, alongside the original STDIO mode
+- **OAuth 2.1 authorization server** — Claude Desktop Custom Connectors with Google and
+  Microsoft Entra ID sign-in, per-user provisioning, JWT access tokens
+- **Per-user attribution** — edits made through MCP are attributed to the real user in
+  Wiki.js page history
+- **Per-user API key provisioning** — script that creates scoped permission groups and
+  personal keys instead of one shared admin token
+- **Operations hardening** — audit log, health checks, Sentry (opt-in), Docker packaging
+- New tools: unpublished-page workflows, page moves, user & group management
+
+Thanks to the original author for the foundation. Generic fixes are offered back
+upstream where applicable.
+
 ## ✨ Features
 
 ### 📄 Page Management
@@ -211,8 +229,8 @@ member can connect by signing in with their Google account.
 #### For Users
 
 1. Open **Claude Desktop → Settings → Connectors**
-2. Find the **BulkSource Knowledge Base** connector (added by your org admin)
-3. Click **"Connect"** → sign in with your `act.software` Google account
+2. Find your wiki's connector (added by your org admin)
+3. Click **"Connect"** → sign in with your company Google account
 4. All 17 Wiki.js tools are now available in every Claude Desktop conversation
 
 > You must have logged in to the Wiki.js web UI at least once before connecting.
@@ -226,7 +244,7 @@ The short version — add the connector at the **organisation** level:
 
 | Field | Value |
 |---|---|
-| Connector URL | `https://mcp.knb.bulksource.com/mcp` |
+| Connector URL | `https://mcp.example.com/mcp` |
 | OAuth Client ID | `wikijs-mcp-client` |
 | OAuth Client Secret | *(value of `OAUTH_CLIENT_SECRET` in your `.env`)* |
 
