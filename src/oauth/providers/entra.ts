@@ -8,7 +8,7 @@
  *   - App registration in Entra ID (https://portal.azure.com)
  *   - Supported account types: single tenant or multi-tenant as needed
  *   - Redirect URI (Web): value of ENTRA_REDIRECT_URI env var
- *     (e.g. https://mcp.knb.bulksource.com/oauth/callback/microsoft)
+ *     (e.g. https://mcp.example.com/oauth/callback/microsoft)
  *   - API permissions: openid, email, profile (delegated, no admin consent needed)
  */
 import { type IdentityProvider } from "./base.js";

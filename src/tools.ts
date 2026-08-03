@@ -2221,7 +2221,7 @@ async function flushWikiCache(): Promise<void> {
 }
 // Public URL used in page links returned to clients. Falls back to WIKIJS_BASE_URL
 // so existing deployments work without change, but set WIKIJS_PUBLIC_URL to the
-// public hostname (e.g. https://knb.bulksource.com) so Claude Desktop can open links.
+// public hostname (e.g. https://wiki.example.com) so Claude Desktop can open links.
 const WIKIJS_PUBLIC_URL =
   process.env.WIKIJS_PUBLIC_URL ||
   process.env.WIKIJS_BASE_URL ||
