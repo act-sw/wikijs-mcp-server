@@ -44,5 +44,10 @@ EXPOSE 3200
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "require('http').get('http://127.0.0.1:3200/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
-# Запуск HTTP сервера
-CMD ["node", "dist/server.js"]
+# Запуск HTTP сервера.
+# --import preloads Sentry (dist/instrument.js) before any app module, which is
+# required for correct Sentry initialization under ESM — otherwise Sentry logs
+# "fastify is not instrumented" and misses request context. server.ts also
+# imports instrument.js as a fallback for non-Docker runs; ESM module caching
+# means it is still evaluated only once, so there is no double init.
+CMD ["node", "--import", "./dist/instrument.js", "dist/server.js"]
